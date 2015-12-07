@@ -1,6 +1,13 @@
 # Activity Tracker
 
+Un mix de [Google Keep](https://play.google.com/store/apps/details?id=com.google.android.keep) et [TexTory](https://play.google.com/store/apps/details?id=io.android.textory)
+
 ## TODO
+
+- Get data from :
+  - Google calendar
+  - SMS
+  - Phone Calls
 
 ## Getting started
 
@@ -36,24 +43,80 @@ Conventions de nommage pour les services :
 ## App models
 
 ```
-Activity {
+Memo {
   id: "123",
   date: 1448531496470,      // date of the activity
   location: {
     lat: 0.5,
     lon: 0.6
   },
-  name: "07/12 matin",
-  hungerBeforeMeal: 6       // 1-10
-  meal: "bla bla bla",
-  alone: false,
-  inFrontOfScreen: false,
-  satietyAfterMeal: 11,     // 10-20
-  fulfilmentAfterMeal: 7,   // 1-10
+  title: "07/12 matin",
+  text: "",
+  color: "",
+  tags: [""],
   pictures: [{
-    path: "meals/2015_12_07-12_10_33.jpg",
-    fullPath: "file:///data/data/com.example.myapp/files/meals/2015_12_07-12_10_33.jpg"
+    date: 1448531496470,
+    location: {
+      lat: 0.5,
+      lon: 0.6
+    },
+    path: "memos/2015_12_07-12_10_33.jpg",
+    fullPath: "file:///data/data/com.example.myapp/files/memos/2015_12_07-12_10_33.jpg"
   }],
+  reminder: {},
+  meal: {
+    alone: false,
+    screen: false,
+    hangerBefore: 6,
+    satietyAfter! 11,
+    fulfilmentAfter: 8
+  },
+  entities: [{
+    id: "123",
+    ref: "@Loïc Knuchel"
+  }],
+  archived: false,
+  created: 1448531496470,   // date were the activity was created
+  updated: 1448531496470    // date were the activity was last edited
+}
+```
+
+```
+Entity {
+  id: "123",
+  name: "Loïc Knuchel",
+  type: "person", // can also be : company, place
+  location: {
+    lat: 0.5,
+    lon: 0.6
+  },
+  phones: [{
+    type: "mobile", // can also be : work, home
+    value: "0683472182",
+    comment: ""
+  }],
+  emails: [{
+    type: "perso", // can also be : work
+    value: "loicknuchel@gmail.com",
+    comment: ""
+  }],
+  adresses: [{
+    type: "home", // can also be : work
+    value: "119 rue des pyrénées 75020 Paris",
+    comment: "code 1234B"
+  }],
+  links: [{
+    type: "twitter", // can also be blog, site, facebook...
+    value: "https://twitter.com/loicknuchel",
+    comment: ""
+  }],
+  pictures: [{
+    path: "",
+    fullPath: ""
+  }],
+  comment: "",
+  tags: [""],
+  archived: false,
   created: 1448531496470,   // date were the activity was created
   updated: 1448531496470    // date were the activity was last edited
 }
