@@ -9,6 +9,8 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <access launch-external="yes" origin="tel:*" />
+  <access launch-external="yes" origin="mailto:*" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -17,4 +19,11 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <engine name="android" spec="~4.1.1" />
+  <plugin name="cordova-plugin-device" spec="~1.1.0" />
+  <plugin name="cordova-plugin-splashscreen" spec="~3.0.0" />
+  <plugin name="cordova-plugin-statusbar" spec="~2.0.0" />
+  <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
+  <plugin name="ionic-plugin-keyboard" spec="~1.0.8" />
+  <plugin name="cordova-sqlite-storage" spec="~0.7.14" />
 </widget>
