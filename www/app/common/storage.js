@@ -14,6 +14,7 @@
       // activities
       getActivity: getActivity,
       setActivity: setActivity,
+      removeActivity: removeActivity,
       getActivities: getActivities,
       // global
       clear: clear
@@ -29,6 +30,10 @@
       } else {
         return $q.reject({message: 'Activity has no parameter <id>'});
       }
+    }
+
+    function removeActivity(id){
+      return _StorageUtils.remove(keys.activity(id));
     }
 
     function getActivities(){

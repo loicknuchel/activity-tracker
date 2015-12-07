@@ -2,6 +2,9 @@
 
 ## TODO
 
+- textarea autogrow
+- take pictures
+
 ## Getting started
 
 - installer [Node.js](https://nodejs.org/) et [Git](https://git-scm.com/) (si pas déjà fait)
