@@ -5,6 +5,7 @@
 
   function Utils($q, $timeout){
     return {
+      createUuid: createUuid,
       dateFormat: dateFormat,
       dateParse: dateParse,
       realAsync: realAsync,
@@ -12,6 +13,11 @@
       encodeUTF8: encodeUTF8,
       decodeUTF8: decodeUTF8
     };
+
+    function createUuid(){
+      function S4(){ return (((1+Math.random())*0x10000)|0).toString(16).substring(1); }
+      return (S4() + S4() + '-' + S4() + '-4' + S4().substr(0,3) + '-' + S4() + '-' + S4() + S4() + S4()).toLowerCase();
+    }
 
     function dateFormat(timestamp){
       return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');

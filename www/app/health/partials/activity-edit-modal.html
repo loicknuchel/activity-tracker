@@ -1,0 +1,62 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="fn.cancel()">Annuler</button>
+    </div>
+    <h1 class="title">{{data.activity.id ? 'Modifier l\'action' : 'Nouvelle action'}}</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="fn.save()">Valider</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Nom</span>
+        <input type="text" placeholder="Nom" ng-model="data.activity.name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Repas</span>
+        <textarea placeholder="Repas" ng-model="data.activity.meal"></textarea>
+      </label>
+      <div class="item item-toggle">
+        Seul
+        <label class="toggle toggle-positive">
+          <input type="checkbox" ng-model="data.activity.alone">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+      <div class="item item-toggle">
+        Devant un écran
+        <label class="toggle toggle-positive">
+          <input type="checkbox" ng-model="data.activity.inFrontOfScreen">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+      <div class="item item-divider">Faim</div>
+      <div class="item range range-positive">
+        <i class="icon ion-ios-sunny-outline"></i>
+        <input type="range" name="hunger" min="1" max="10" ng-model="data.activity.hungerBeforeMeal">
+        <i class="icon ion-ios-sunny"></i>
+      </div>
+      <div class="item item-divider">Satiété</div>
+      <div class="item range range-positive">
+        <i class="icon ion-ios-sunny-outline"></i>
+        <input type="range" name="hunger" min="10" max="20" ng-model="data.activity.satietyAfterMeal">
+        <i class="icon ion-ios-sunny"></i>
+      </div>
+      <div class="item item-divider">Satisfaction</div>
+      <div class="item range range-positive">
+        <i class="icon ion-ios-sunny-outline"></i>
+        <input type="range" name="hunger" min="1" max="10" ng-model="data.activity.fulfilmentAfterMeal">
+        <i class="icon ion-ios-sunny"></i>
+      </div>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive">Ajouter une photo</button>
+    </div>
+  </ion-content>
+</ion-modal-view>

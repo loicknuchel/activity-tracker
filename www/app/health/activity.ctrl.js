@@ -3,7 +3,7 @@
   angular.module('app')
     .controller('ActivityCtrl', ActivityCtrl);
 
-  function ActivityCtrl($scope, $stateParams, Storage){
+  function ActivityCtrl($scope, $stateParams, ActivityUi, Storage){
     var data = {}, fn = {};
     $scope.data = data;
     $scope.fn = fn;
@@ -14,8 +14,12 @@
       });
     });
 
-    fn.createActivity = function(){
-      alert('TODO: createActivity');
+    fn.editActivity = function(){
+      ActivityUi.editActivity(data.activity).then(function(activity){
+        Storage.setActivity(activity).then(function(){
+          data.activity = activity;
+        });
+      });
     };
   }
 })();

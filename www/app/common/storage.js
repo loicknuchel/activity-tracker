@@ -8,11 +8,12 @@
   function Storage(_StorageUtils){
     var keys = {
       activityStart: 'activity-',
-      activity: function(id){ return this.activitiesStart+id; }
+      activity: function(id){ return this.activityStart+id; }
     };
     return {
       // activities
       getActivity: getActivity,
+      setActivity: setActivity,
       getActivities: getActivities,
       // global
       clear: clear
@@ -20,6 +21,14 @@
 
     function getActivity(id){
       return _StorageUtils.get(keys.activity(id));
+    }
+
+    function setActivity(activity){
+      if(activity && activity.id){
+        return _StorageUtils.set(keys.activity(activity.id), activity);
+      } else {
+        return $q.reject({message: 'Activity has no parameter <id>'});
+      }
     }
 
     function getActivities(){
