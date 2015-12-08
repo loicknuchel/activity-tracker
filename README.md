@@ -73,8 +73,10 @@ Memo {
   },
   entities: [{
     id: "123",
+    name: "Loïc Knuchel",
     ref: "@Loïc Knuchel"
   }],
+  favorited: false,
   archived: false,
   created: 1448531496470,   // date were the activity was created
   updated: 1448531496470    // date were the activity was last edited
