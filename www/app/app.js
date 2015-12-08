@@ -1,11 +1,13 @@
 (function(){
   'use strict';
-  angular.module('app', ['ionic'])
+  angular.module('app', ['ionic', 'monospaced.elastic'])
     .config(configBlock)
     .run(runBlock);
 
-  function configBlock($stateProvider, $urlRouterProvider, $provide){
+  function configBlock($stateProvider, $urlRouterProvider, $provide, msdElasticConfig){
     // $ionicConfigProvider.views.transition('none');
+    msdElasticConfig.append = '\n';
+
     $stateProvider
     .state('loading', {
       url: '/loading',
