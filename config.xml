@@ -27,4 +27,6 @@
   <plugin name="ionic-plugin-keyboard" spec="~1.0.8" />
   <plugin name="cordova-sqlite-storage" spec="~0.7.14" />
   <plugin name="cordova-plugin-x-toast" spec="~2.2.3" />
+  <plugin name="cordova-plugin-file" spec="~3.0.0" />
+  <plugin name="de.appplant.cordova.plugin.email-composer" spec="~0.8.2" />
 </widget>

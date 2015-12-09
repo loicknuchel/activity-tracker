@@ -21,7 +21,9 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-sqlite-storage",
-    "cordova-plugin-x-toast"
+    "cordova-plugin-x-toast",
+    "cordova-plugin-file",
+    "de.appplant.cordova.plugin.email-composer"
   ],
   "cordovaPlatforms": [
     "android"

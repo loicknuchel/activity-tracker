@@ -18,6 +18,7 @@
       removeMemo: removeMemo,
       getMemos: getMemos,
       // global
+      getDb: getDb,
       clear: clear
     };
 
@@ -41,6 +42,10 @@
       return _StorageUtils.getStartsWith(keys.memoStart);
     }
 
+    function getDb(){
+      return _StorageUtils.getDb();
+    }
+
     function clear(){
       //return _FilesystemUtils.clear().then(function(){
         return _StorageUtils.clear();
@@ -62,6 +67,7 @@
       getEndsWith: getEndsWith,
       set: set,
       remove: remove,
+      getDb: getDb,
       clear: clear
     };
 
@@ -143,6 +149,27 @@
       } else {
         return $q.when();
       }
+    }
+
+    function getDb(){
+      return _getKeys().then(function(keys){
+        var promises = _.map(keys, function(key){
+          return get(key).then(function(value){
+            if(value){
+              return {key: key, value: value};
+            }
+          });
+        });
+        return $q.all(promises);
+      }).then(function(results){
+        var db = {};
+        for(var i in results){
+          if(results[i]){
+            db[results[i].key] = results[i].value;
+          }
+        }
+        return db;
+      });
     }
 
     function clear(){
