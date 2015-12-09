@@ -11,12 +11,16 @@
     
     function createActivity(){
       return _showActivityModal({
-        name: _generateActivityName(),
-        hungerBeforeMeal: 1,
-        alone: false,
-        inFrontOfScreen: false,
-        satietyAfterMeal: 10,
-        fulfilmentAfterMeal: 1
+        title: _generateActivityName(),
+        custom: {
+          meal: {
+            alone: false,
+            screen: false,
+            hungerBefore: 1,
+            satietyAfter: 10,
+            fulfilmentAfter: 1
+          }
+        }
       }).then(function(activity){
         activity.id = Utils.createUuid();
         activity.date = Date.now();

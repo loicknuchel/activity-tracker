@@ -95,7 +95,7 @@
     return stopPropagation;
   };
 
-  function runBlock($rootScope, Storage){
+  function runBlock($rootScope){
     $rootScope.safeApply = function(fn){
       var phase = this.$root ? this.$root.$$phase : this.$$phase;
       if(phase === '$apply' || phase === '$digest'){

@@ -65,12 +65,14 @@ Memo {
     fullPath: "file:///data/data/com.example.myapp/files/memos/2015_12_07-12_10_33.jpg"
   }],
   reminder: {},
-  meal: {
-    alone: false,
-    screen: false,
-    hangerBefore: 6,
-    satietyAfter! 11,
-    fulfilmentAfter: 8
+  custom: {
+    meal: {
+      alone: false,
+      screen: false,
+      hangerBefore: 6,
+      satietyAfter: 11,
+      fulfilmentAfter: 8
+    }
   },
   entities: [{
     id: "123",

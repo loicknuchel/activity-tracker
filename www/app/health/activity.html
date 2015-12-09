@@ -4,7 +4,9 @@
     <button class="button button-icon ion-android-delete" ng-click="fn.removeActivity()"></button>
   </ion-nav-buttons>
   <ion-content class="padding">
-    {{data.activity.name}}<br>
+    {{data.activity.title}}<br>
+    {{data.activity.text}}<br>
     {{data.activity.date | date}}<br>
+    <pre>{{data.activity | json}}</pre>
   </ion-content>
 </ion-view>

@@ -13,7 +13,8 @@
     <ion-refresher pulling-text="Tvirez pour actualiser..." on-refresh="fn.refreshActivities()"></ion-refresher>
     <div class="list card" ng-repeat="activity in filteredActivities = (data.activities | filter:search | orderBy:'-date') track by activity.id" ui-sref="app.health.activity({id: activity.id})">
       <a class="item">
-        <h2>{{activity.name}}</h2>
+        <h2>{{activity.title}}</h2>
+        <p>{{activity.text}}</p>
         <p>{{activity.date | date}}</p>
       </a>
     </div>
