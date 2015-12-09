@@ -14,8 +14,7 @@
     <div class="list card" ng-repeat="activity in filteredActivities = (data.activities | filter:search | orderBy:'-date') track by activity.id" ui-sref="app.health.activity({id: activity.id})">
       <a class="item">
         <h2>{{activity.title}}</h2>
-        <p>{{activity.text}}</p>
-        <p>{{activity.date | date}}</p>
+        <p class="multi" ng-bind-html="activity.text | multi"></p>
       </a>
     </div>
   </ion-content>
