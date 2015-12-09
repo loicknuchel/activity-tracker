@@ -1,6 +1,6 @@
-<ion-view title="Activités">
+<ion-view title="Notes">
   <ion-nav-buttons side="right">
-    <button class="button button-icon ion-plus" ng-click="fn.createActivity()"></button>
+    <button class="button button-icon ion-plus" ng-click="fn.createMemo()"></button>
   </ion-nav-buttons>
   <div class="bar bar-subheader item-input-inset" ng-class="{'bar-positive': search.length > 0}">
     <label class="item-input-wrapper">
@@ -10,11 +10,11 @@
     <button class="button button-clear" ng-click="search=''">Annuler</button>
   </div>
   <ion-content class="has-subheader">
-    <ion-refresher pulling-text="Tvirez pour actualiser..." on-refresh="fn.refreshActivities()"></ion-refresher>
-    <div class="list card" ng-repeat="activity in filteredActivities = (data.activities | filter:search | orderBy:'-date') track by activity.id" ui-sref="app.health.activity({id: activity.id})">
+    <ion-refresher pulling-text="Tvirez pour actualiser..." on-refresh="fn.refreshMemos()"></ion-refresher>
+    <div class="list card" ng-repeat="memo in filteredMemos = (data.memos | filter:search | orderBy:'-date') track by memo.id" ui-sref="app.health.memo({id: memo.id})">
       <a class="item">
-        <h2>{{activity.title}}</h2>
-        <p class="multi" ng-bind-html="activity.text | multi"></p>
+        <h2>{{memo.title}}</h2>
+        <p class="multi" ng-bind-html="memo.text | multi"></p>
       </a>
     </div>
   </ion-content>

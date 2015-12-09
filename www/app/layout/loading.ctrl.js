@@ -8,8 +8,8 @@
       disableAnimate: true,
       disableBack: true
     });
-    Storage.getActivities().then(function(activities){
-      $state.go('app.health.activities');
+    Storage.getMemos().then(function(memos){
+      $state.go('app.health.memos');
     });
   }
 })();

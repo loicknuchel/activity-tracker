@@ -2,7 +2,7 @@
   'use strict';
   angular.module('app')
     .constant('ModalTmpl', {
-      activityEdit: 'app/health/partials/activity-edit-modal.html'
+      memoEdit: 'app/health/partials/memo-edit-modal.html'
     })
     .constant('C', {
     });

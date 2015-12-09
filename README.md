@@ -46,7 +46,7 @@ Conventions de nommage pour les services :
 ```
 Memo {
   id: "123",
-  date: 1448531496470,      // date of the activity
+  date: 1448531496470,      // date of the memo
   location: {
     lat: 0.5,
     lon: 0.6
@@ -81,8 +81,8 @@ Memo {
   }],
   favorited: false,
   archived: false,
-  created: 1448531496470,   // date were the activity was created
-  updated: 1448531496470    // date were the activity was last edited
+  created: 1448531496470,   // date were the memo was created
+  updated: 1448531496470    // date were the memo was last edited
 }
 ```
 
@@ -122,7 +122,7 @@ Entity {
   comment: "",
   tags: [""],
   archived: false,
-  created: 1448531496470,   // date were the activity was created
-  updated: 1448531496470    // date were the activity was last edited
+  created: 1448531496470,   // date were the memo was created
+  updated: 1448531496470    // date were the memo was last edited
 }
 ```

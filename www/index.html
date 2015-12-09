@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:*">
     <title></title>
 
     <!-- compiled css output -->
@@ -24,6 +26,7 @@
     <script src="app/constants.js"></script>
     <script src="app/common/polyfills/String.js"></script>
     <script src="app/common/plugins/utils.js"></script>
+    <script src="app/common/plugins/file.js"></script>
     <script src="app/common/plugins/sqlite.js"></script>
     <script src="app/common/plugins/toast.js"></script>
     <script src="app/common/ui/utils.js"></script>
@@ -32,9 +35,9 @@
     <script src="app/common/storage.js"></script>
     <script src="app/layout/loading.ctrl.js"></script>
     <script src="app/layout/layout.ctrl.js"></script>
-    <script src="app/health/activity.srv.js"></script>
-    <script src="app/health/activities.ctrl.js"></script>
-    <script src="app/health/activity.ctrl.js"></script>
+    <script src="app/health/memo.srv.js"></script>
+    <script src="app/health/memos.ctrl.js"></script>
+    <script src="app/health/memo.ctrl.js"></script>
     <script src="app/settings/settings.ctrl.js"></script>
   </head>
   <body ng-app="app">

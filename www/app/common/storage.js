@@ -3,47 +3,48 @@
   angular.module('app')
     .factory('Storage', Storage)
     .factory('_StorageUtils', _StorageUtils) // private service, should not be used outside this file !!!
+    .factory('_FilesystemUtils', _FilesystemUtils) // private service, should not be used outside this file !!!
     .factory('_SQLiteUtils', _SQLiteUtils); // private service, should not be used outside this file !!!
 
-  function Storage(_StorageUtils){
+  function Storage(_StorageUtils, _FilesystemUtils){
     var keys = {
-      activityStart: 'activity-',
-      activity: function(id){ return this.activityStart+id; }
+      memoStart: 'memo-',
+      memo: function(id){ return this.memoStart+id; }
     };
     return {
-      // activities
-      getActivity: getActivity,
-      setActivity: setActivity,
-      removeActivity: removeActivity,
-      getActivities: getActivities,
+      // memos
+      getMemo: getMemo,
+      setMemo: setMemo,
+      removeMemo: removeMemo,
+      getMemos: getMemos,
       // global
       clear: clear
     };
 
-    function getActivity(id){
-      return _StorageUtils.get(keys.activity(id));
+    function getMemo(id){
+      return _StorageUtils.get(keys.memo(id));
     }
 
-    function setActivity(activity){
-      if(activity && activity.id){
-        return _StorageUtils.set(keys.activity(activity.id), activity);
+    function setMemo(memo){
+      if(memo && memo.id){
+        return _StorageUtils.set(keys.memo(memo.id), memo);
       } else {
-        return $q.reject({message: 'Activity has no parameter <id>'});
+        return $q.reject({message: 'Memo has no parameter <id>'});
       }
     }
 
-    function removeActivity(id){
-      return _StorageUtils.remove(keys.activity(id));
+    function removeMemo(id){
+      return _StorageUtils.remove(keys.memo(id));
     }
 
-    function getActivities(){
-      return _StorageUtils.getStartsWith(keys.activityStart);
+    function getMemos(){
+      return _StorageUtils.getStartsWith(keys.memoStart);
     }
 
     function clear(){
-      return _FilesystemUtils.clear().then(function(){
+      //return _FilesystemUtils.clear().then(function(){
         return _StorageUtils.clear();
-      });
+      //});
     }
   }
 
@@ -212,6 +213,16 @@
           _clearKeys();
         });
       }
+    }
+  }
+
+  function _FilesystemUtils(FilePlugin){
+    return {
+      clear: clear
+    };
+
+    function clear(){
+      return FilePlugin.clear('');
     }
   }
 

@@ -30,15 +30,15 @@
         }
       }
     })
-    .state('app.health.activities', {
-      url: '/activities',
-      templateUrl: 'app/health/activities.html',
-      controller: 'ActivitiesCtrl'
+    .state('app.health.memos', {
+      url: '/memos',
+      templateUrl: 'app/health/memos.html',
+      controller: 'MemosCtrl'
     })
-    .state('app.health.activity', {
-      url: '/activity/:id',
-      templateUrl: 'app/health/activity.html',
-      controller: 'ActivityCtrl'
+    .state('app.health.memo', {
+      url: '/memo/:id',
+      templateUrl: 'app/health/memo.html',
+      controller: 'MemoCtrl'
     })
 
     .state('app.settings', {
