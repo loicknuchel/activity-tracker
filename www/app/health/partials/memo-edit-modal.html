@@ -1,11 +1,8 @@
 <ion-modal-view>
   <ion-header-bar class="bar-positive">
-    <div class="buttons">
-      <button class="button button-clear" ng-click="fn.cancel()">Annuler</button>
-    </div>
     <h1 class="title">{{data.memo.id ? 'Modifier l\'action' : 'Nouvelle action'}}</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="fn.save()">Valider</button>
+      <button class="button button-icon ion-android-camera" ng-click="fn.addPicture()"></button>
     </div>
   </ion-header-bar>
   <ion-content>
@@ -55,8 +52,15 @@
         <i class="icon ion-ios-sunny"></i>
       </div>
     </div>
+    <div class="picture-gallery" ng-if="data.memo.pictures.length > 0">
+      <ion-scroll direction="x" class="wide-as-needed">
+        <div class="picture" ng-repeat="picture in data.memo.pictures">
+          <img ng-src="{{picture.fullPath}}" style="height: 100px">
+        </div>
+      </ion-scroll>
+    </div>
     <div class="padding">
-      <button class="button button-block button-positive">Ajouter une photo</button>
+      <button class="button button-block button-positive" ng-click="fn.save()">Valider</button>
     </div>
   </ion-content>
 </ion-modal-view>

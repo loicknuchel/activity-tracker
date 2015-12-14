@@ -23,7 +23,8 @@
     "cordova-sqlite-storage",
     "cordova-plugin-x-toast",
     "cordova-plugin-file",
-    "de.appplant.cordova.plugin.email-composer"
+    "de.appplant.cordova.plugin.email-composer",
+    "cordova-plugin-camera"
   ],
   "cordovaPlatforms": [
     "android"

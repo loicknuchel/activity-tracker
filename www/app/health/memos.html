@@ -10,12 +10,13 @@
     <button class="button button-clear" ng-click="search=''">Annuler</button>
   </div>
   <ion-content class="has-subheader">
-    <ion-refresher pulling-text="Tvirez pour actualiser..." on-refresh="fn.refreshMemos()"></ion-refresher>
+    <ion-refresher pulling-text="Tirez pour actualiser..." on-refresh="fn.refreshMemos()"></ion-refresher>
     <div class="list card" ng-repeat="memo in filteredMemos = (data.memos | filter:search | orderBy:'-date') track by memo.id" ui-sref="app.health.memo({id: memo.id})">
-      <a class="item">
+      <div class="item item-header-picture" ng-if="memo.pictures.length > 0" style="background-image: url({{memo.pictures[0].fullPath}})"></div>
+      <div class="item item-body">
         <h2>{{memo.title}}</h2>
         <p class="multi" ng-bind-html="memo.text | multi"></p>
-      </a>
+      </div>
     </div>
   </ion-content>
 </ion-view>

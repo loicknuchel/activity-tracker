@@ -3,12 +3,13 @@
   angular.module('app')
     .factory('UiUtils', UiUtils);
 
-  function UiUtils($q, $ionicPopup, ToastPlugin){
+  function UiUtils($q, $ionicPopup, $ionicActionSheet, ToastPlugin){
     return {
       confirm: confirm,
       showInfo: showError,
       showError: showError,
-      showToast: showToast
+      showToast: showToast,
+      showOptions: showOptions
     };
 
     function confirm(message, title, buttons){
@@ -33,6 +34,22 @@
 
     function showToast(message){
       ToastPlugin.show(message);
+    }
+
+    function showOptions(options, title){
+      var defer = $q.defer();
+      $ionicActionSheet.show({
+        titleText: title,
+        buttons: options,
+        buttonClicked: function(index){
+          defer.resolve(options[index]);
+          return true;
+        },
+        cancel: function(){
+          defer.reject();
+        }
+      });
+      return defer.promise;
     }
   }
 })();

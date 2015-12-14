@@ -3,7 +3,7 @@
   angular.module('app')
     .factory('MemoUi', MemoUi);
 
-  function MemoUi($rootScope, $q, $ionicModal, Utils, ModalTmpl){
+  function MemoUi($rootScope, $q, $ionicModal, Utils, UiUtils, ModalTmpl, CameraPlugin, FilePlugin){
     return {
       createMemo: createMemo,
       editMemo: editMemo
@@ -52,6 +52,29 @@
       scope.data = data;
       scope.fn = fn;
       data.memo = angular.copy(memo);
+      fn.addPicture = function(){
+        UiUtils.showOptions([{text: 'depuis la librairie', camera: false}, {text: 'depuis la caméra', camera: true}], 'Ajouter une photo').then(function(choice){
+          if(choice.camera){
+            return CameraPlugin.takePicture();
+          } else {
+            return CameraPlugin.findPicture();
+          }
+        }).then(function(picture){
+          console.log('camera picture', picture);
+          var path = 'memo/'+Date.now()+'.jpg';
+          // TODO : problem with photos from library...
+          return FilePlugin.copyFile(picture, path).then(function(pictureEntry){
+            return {
+              path: path,
+              fullPath: pictureEntry.nativeURL
+            };
+          });
+        }).then(function(picture){
+          console.log('memo picture', picture);
+          if(!data.memo.pictures){ data.memo.pictures = []; }
+          data.memo.pictures.push(picture);
+        });
+      };
       fn.cancel = function(){
         scope.modal.hide().then(function(){
           return scope.modal.remove();

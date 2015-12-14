@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.activitytracking895547" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Activity Tracker</name>
+<widget id="com.ionicframework.activitytracking895547.dev" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Activity Tracker dev</name>
   <description>
     An Ionic Framework and Cordova project.
   </description>
@@ -29,4 +29,5 @@
   <plugin name="cordova-plugin-x-toast" spec="~2.2.3" />
   <plugin name="cordova-plugin-file" spec="~3.0.0" />
   <plugin name="de.appplant.cordova.plugin.email-composer" spec="~0.8.2" />
+  <plugin name="cordova-plugin-camera" spec="~1.2.0" />
 </widget>

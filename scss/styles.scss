@@ -1,0 +1,17 @@
+.picture-gallery {
+  position: relative;
+  height: 108px;
+  .wide-as-needed {
+    overflow: scroll;
+    white-space: nowrap;
+  }
+  .picture {
+    position: relative;
+    display: inline-block;
+    margin: 4px;
+    margin-right: 0px;
+    img {
+      height: 100px;
+    }
+  }
+}

@@ -39,12 +39,21 @@
     function getFileEntry(path, fileLocation){
       return PluginUtils.onReady(pluginName, pluginTest).then(function(){
         var defer = $q.defer();
-        var basePath = fileLocation === undefined || fileLocation === null ? $window.cordova.file.dataDirectory : fileLocation;
-        $window.resolveLocalFileSystemURL(basePath + path, function(fileEntry){
+        var fullPath = null;
+        if(fileLocation === undefined){
+          if(path.startsWith('file://') || path.startsWith('content://')){
+            fullPath = path;
+          } else {
+            fullPath = $window.cordova.file.dataDirectory + path;
+          }
+        } else {
+          fullPath = fileLocation + path;
+        }
+        $window.resolveLocalFileSystemURL(fullPath, function(fileEntry){
           defer.resolve(fileEntry);
         }, function(error){
           if(!error){ error = {}; }
-          error.path = basePath + path;
+          error.path = fullPath;
           if(error.code){ error.message = ERR_CODE[error.code]; }
           $log.error('pluginError:'+pluginName, error);
           defer.reject(error);
