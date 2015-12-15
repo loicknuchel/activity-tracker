@@ -3,7 +3,7 @@
   angular.module('app')
     .factory('MemoUi', MemoUi);
 
-  function MemoUi($rootScope, $q, $ionicModal, Utils, UiUtils, ModalTmpl, CameraPlugin, FileTransferPlugin){
+  function MemoUi($rootScope, $q, $ionicModal, Utils, UiUtils, ModalTmpl, CameraPlugin, FileTransferPlugin, FilePlugin){
     return {
       createMemo: createMemo,
       editMemo: editMemo
@@ -13,13 +13,7 @@
       return _showMemoModal({
         title: _generateMemoName(),
         custom: {
-          meal: {
-            alone: false,
-            screen: false,
-            hungerBefore: 1,
-            satietyAfter: 10,
-            fulfilmentAfter: 1
-          }
+          meal: {}
         }
       }).then(function(memo){
         memo.id = Utils.createUuid();
@@ -59,10 +53,11 @@
           } else {
             return CameraPlugin.findPicture();
           }
-        }).then(function(picture){
+        }).then(function(pictureUri){
           var path = 'memo/'+Date.now()+'.jpg';
-          return FileTransferPlugin.download(picture, cordova.file.dataDirectory+path).then(function(pictureEntry){
+          return FileTransferPlugin.download(pictureUri, cordova.file.dataDirectory+path).then(function(pictureEntry){
             return {
+              date: Date.now(),
               path: path,
               fullPath: pictureEntry.nativeURL
             };
@@ -70,6 +65,15 @@
         }).then(function(picture){
           if(!data.memo.pictures){ data.memo.pictures = []; }
           data.memo.pictures.push(picture);
+        });
+      };
+      fn.removePicture = function(picture){
+        UiUtils.confirm('Supprimer la photo ?').then(function(){
+          FilePlugin.removeFile(picture.path).then(function(){
+            data.memo.pictures.splice(data.memo.pictures.indexOf(picture), 1);
+          }, function(err){
+            UiUtils.showToast('Unable to remove picture <'+picture.path+'>: '+JSON.stringify(err));
+          });
         });
       };
       fn.cancel = function(){

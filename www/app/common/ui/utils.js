@@ -4,6 +4,7 @@
     .factory('UiUtils', UiUtils);
 
   function UiUtils($q, $ionicPopup, $ionicActionSheet, ToastPlugin){
+    // TODO : queue $ionicPopup to not display more than one at a time
     return {
       confirm: confirm,
       showInfo: showError,

@@ -25,7 +25,8 @@
       getContent: getContent,
       getContentTree: getContentTree,
       getFile: getFile,
-      getImageBase64: getImageBase64,
+      getFileBinary: getFileBinary,
+      getFileBase64: getFileBase64,
       createFolder: createFolder,
       createFile: createFile,
       copyFile: copyFile,
@@ -115,13 +116,26 @@
       });
     }
 
-    function getImageBase64(path, fileLocation){
+    function getFileBinary(path, fileLocation){
+      return getFile(path, fileLocation).then(function(file){
+        var defer = $q.defer();
+        var reader = new FileReader();
+        reader.onloadend = function(evt){
+          var binary = evt.target.result;
+          defer.resolve(binary);
+        };
+        reader.readAsBinaryString(file);
+        return defer.promise;
+      });
+    }
+
+    function getFileBase64(path, fileLocation){
       return getFile(path, fileLocation).then(function(file){
         var defer = $q.defer();
         var reader = new FileReader();
         reader.onloadend = function(evt){
           var base64WithPrefix = evt.target.result;
-          var base64 = base64WithPrefix.replace(/data:image\/(jpeg|png);base64,/, '');
+          var base64 = base64WithPrefix.replace(/data:(image|application)\/(jpeg|png|zip);base64,/, '');
           defer.resolve(base64);
         };
         reader.readAsDataURL(file);

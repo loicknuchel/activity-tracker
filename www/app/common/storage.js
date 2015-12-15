@@ -3,10 +3,9 @@
   angular.module('app')
     .factory('Storage', Storage)
     .factory('_StorageUtils', _StorageUtils) // private service, should not be used outside this file !!!
-    .factory('_FilesystemUtils', _FilesystemUtils) // private service, should not be used outside this file !!!
     .factory('_SQLiteUtils', _SQLiteUtils); // private service, should not be used outside this file !!!
 
-  function Storage(_StorageUtils, _FilesystemUtils){
+  function Storage(_StorageUtils, FilePlugin){
     var keys = {
       memoStart: 'memo-',
       memo: function(id){ return this.memoStart+id; }
@@ -35,7 +34,11 @@
     }
 
     function removeMemo(id){
-      return _StorageUtils.remove(keys.memo(id));
+      return getMemo(id).then(function(memo){
+        return FilePlugin.removeFiles(_.map(memo.pictures, 'path'));
+      }).then(function(){
+        return _StorageUtils.remove(keys.memo(id));
+      });
     }
 
     function getMemos(){
@@ -47,9 +50,9 @@
     }
 
     function clear(){
-      //return _FilesystemUtils.clear().then(function(){
+      return FilePlugin.clear('').then(function(){
         return _StorageUtils.clear();
-      //});
+      });
     }
   }
 
@@ -240,16 +243,6 @@
           _clearKeys();
         });
       }
-    }
-  }
-
-  function _FilesystemUtils(FilePlugin){
-    return {
-      clear: clear
-    };
-
-    function clear(){
-      return FilePlugin.clear('');
     }
   }
 
