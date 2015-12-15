@@ -9,7 +9,8 @@
     var pluginTest = function(){ return $window.FileTransfer; };
     return {
       options: options,
-      upload: upload
+      upload: upload,
+      download: download
     };
 
     function options(opts){
@@ -36,6 +37,19 @@
         return defer.promise;
       });
     }
+
+    function download(sourceUri, destinationPath, trustAllHosts, options){
+      return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+        var defer = $q.defer();
+        var ft = new FileTransfer();
+        ft.download(sourceUri, destinationPath, function(entry){
+          defer.resolve(entry);
+        }, function(error){
+          defer.reject(error);
+        }, trustAllHosts, options);
+        return defer.promise;
+      });
+    }
   }
 
   /**************************
@@ -48,6 +62,9 @@
       if(!window.FileTransfer){
         window.FileTransfer = function(){};
         FileTransfer.prototype.upload = function(filePath, server, successCallback, errorCallback, options, trustAllHosts){
+          if(successCallback){ successCallback({}); }
+        };
+        FileTransfer.prototype.download = function(source, target, successCallback, errorCallback, trustAllHosts, options){
           if(successCallback){ successCallback({}); }
         };
         window.FileUploadOptions = function(){};

@@ -3,7 +3,7 @@
   angular.module('app')
     .factory('MemoUi', MemoUi);
 
-  function MemoUi($rootScope, $q, $ionicModal, Utils, UiUtils, ModalTmpl, CameraPlugin, FilePlugin){
+  function MemoUi($rootScope, $q, $ionicModal, Utils, UiUtils, ModalTmpl, CameraPlugin, FileTransferPlugin){
     return {
       createMemo: createMemo,
       editMemo: editMemo
@@ -60,17 +60,14 @@
             return CameraPlugin.findPicture();
           }
         }).then(function(picture){
-          console.log('camera picture', picture);
           var path = 'memo/'+Date.now()+'.jpg';
-          // TODO : problem with photos from library...
-          return FilePlugin.copyFile(picture, path).then(function(pictureEntry){
+          return FileTransferPlugin.download(picture, cordova.file.dataDirectory+path).then(function(pictureEntry){
             return {
               path: path,
               fullPath: pictureEntry.nativeURL
             };
           });
         }).then(function(picture){
-          console.log('memo picture', picture);
           if(!data.memo.pictures){ data.memo.pictures = []; }
           data.memo.pictures.push(picture);
         });
