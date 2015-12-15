@@ -16,6 +16,25 @@
       <div class="item item-body">
         <h2>{{memo.title}}</h2>
         <p class="multi" ng-bind-html="memo.text | multi"></p>
+        <div class="row" style="text-align: center; font-size: 20px; padding: 0px;">
+          <div class="col">
+            <i class="ion-ios-person" ng-if="memo.custom.meal.alone"></i>
+            <i class="ion-ios-people" ng-if="!memo.custom.meal.alone"></i>
+          </div>
+          <div class="col">
+            <i class="ion-ios-monitor" ng-if="memo.custom.meal.screen"></i>
+            <i class="ion-ios-monitor-outline" ng-if="!memo.custom.meal.screen"></i>
+          </div>
+          <div class="col">
+            <span ng-if="memo.custom.meal.hungerBefore"><i class="ion-pizza"></i> {{memo.custom.meal.hungerBefore}}</span>
+          </div>
+          <div class="col">
+            <span ng-if="memo.custom.meal.satietyAfter"><i class="ion-android-hand"></i> {{memo.custom.meal.satietyAfter}}</span>
+          </div>
+          <div class="col">
+            <span ng-if="memo.custom.meal.fulfilmentAfter"><i class="ion-heart"></i> {{memo.custom.meal.fulfilmentAfter}}</span>
+          </div>
+        </div>
       </div>
     </div>
   </ion-content>
