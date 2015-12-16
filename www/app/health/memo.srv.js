@@ -58,8 +58,7 @@
           return FileTransferPlugin.download(pictureUri, cordova.file.dataDirectory+path).then(function(pictureEntry){
             return {
               date: Date.now(),
-              path: path,
-              fullPath: pictureEntry.nativeURL
+              path: path
             };
           });
         }).then(function(picture){

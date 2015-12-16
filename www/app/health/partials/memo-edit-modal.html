@@ -55,7 +55,7 @@
     <div class="picture-gallery" ng-if="data.memo.pictures.length > 0">
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="picture" ng-repeat="picture in data.memo.pictures" ng-click="fn.removePicture(picture)">
-          <img ng-src="{{picture.fullPath}}" style="height: 100px">
+          <img ng-src="{{picture.path | fullPath}}" style="height: 100px">
         </div>
       </ion-scroll>
     </div>

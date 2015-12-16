@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   angular.module('app')
-    .factory('FilePlugin', FilePlugin);
+    .factory('FilePlugin', FilePlugin)
+    .filter('fullPath', fullPathFilter);
 
   // for File plugin : cordova-plugin-file (https://github.com/apache/cordova-plugin-file)
   function FilePlugin($window, $q, $log, PluginUtils){
@@ -21,6 +22,7 @@
       '12': 'PATH_EXISTS_ERR'
     };
     return {
+      getFullPath: getFullPath,
       getFileEntry: getFileEntry,
       getContent: getContent,
       getContentTree: getContentTree,
@@ -37,19 +39,22 @@
       clear: clear
     };
 
+    function getFullPath(path, fileLocation){
+      if(fileLocation === undefined){
+        if(path.startsWith('file://') || path.startsWith('content://')){
+          return path;
+        } else {
+          return $window.cordova.file.dataDirectory + path;
+        }
+      } else {
+        return fileLocation + path;
+      }
+    }
+
     function getFileEntry(path, fileLocation){
       return PluginUtils.onReady(pluginName, pluginTest).then(function(){
         var defer = $q.defer();
-        var fullPath = null;
-        if(fileLocation === undefined){
-          if(path.startsWith('file://') || path.startsWith('content://')){
-            fullPath = path;
-          } else {
-            fullPath = $window.cordova.file.dataDirectory + path;
-          }
-        } else {
-          fullPath = fileLocation + path;
-        }
+        var fullPath = getFullPath(path, fileLocation);
         $window.resolveLocalFileSystemURL(fullPath, function(fileEntry){
           defer.resolve(fileEntry);
         }, function(error){
@@ -267,6 +272,12 @@
         return defer.promise;
       }
     }
+  }
+
+  function fullPathFilter(FilePlugin){
+    return function(path, defaultPath){
+      return path ? FilePlugin.getFullPath(path) : defaultPath;
+    };
   }
 
 

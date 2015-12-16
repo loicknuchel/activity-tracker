@@ -61,8 +61,7 @@ Memo {
       lat: 0.5,
       lon: 0.6
     },
-    path: "memos/2015_12_07-12_10_33.jpg",
-    fullPath: "file:///data/data/com.example.myapp/files/memos/2015_12_07-12_10_33.jpg"
+    path: "memos/2015_12_07-12_10_33.jpg"
   }],
   reminder: {},
   custom: {
@@ -116,8 +115,7 @@ Entity {
     comment: ""
   }],
   pictures: [{
-    path: "",
-    fullPath: ""
+    path: ""
   }],
   comment: "",
   tags: [""],
