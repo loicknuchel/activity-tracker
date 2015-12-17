@@ -1,0 +1,9 @@
+<ion-modal-view ng-click="fn.cancel()" class="modal-gallery">
+  <ion-slide-box show-pager="true" active-slide="data.index">
+    <ion-slide ng-repeat="picture in data.pictures" class="slide-gallery">
+      <ion-scroll class="item-gallery" zooming="true" min-zoom="1" direction="xy">
+        <img ng-src="{{picture.path | fullPath}}">
+      </ion-scroll>
+    </ion-slide>
+  </ion-slide-box>
+</ion-modal-view>

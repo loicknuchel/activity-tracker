@@ -6,6 +6,13 @@
     </div>
   </ion-header-bar>
   <ion-content>
+    <div class="picture-gallery" ng-if="data.memo.pictures.length > 0">
+      <ion-scroll direction="x" class="wide-as-needed">
+        <div class="picture" ng-repeat="picture in data.memo.pictures" ng-click="fn.removePicture(picture)">
+          <img ng-src="{{picture.path | fullPath}}" style="height: 100px">
+        </div>
+      </ion-scroll>
+    </div>
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">Nom</span>
@@ -52,15 +59,10 @@
         <i class="icon ion-ios-sunny"></i>
       </div>
     </div>
-    <div class="picture-gallery" ng-if="data.memo.pictures.length > 0">
-      <ion-scroll direction="x" class="wide-as-needed">
-        <div class="picture" ng-repeat="picture in data.memo.pictures" ng-click="fn.removePicture(picture)">
-          <img ng-src="{{picture.path | fullPath}}" style="height: 100px">
-        </div>
-      </ion-scroll>
-    </div>
-    <div class="padding">
-      <button class="button button-block button-positive" ng-click="fn.save()">Valider</button>
-    </div>
   </ion-content>
+  <div class="bar bar-footer">
+    <div class="button-bar bar-stable">
+      <button class="button button-positive" ng-click="fn.save()">Valider</button>
+    </div>
+  </div>
 </ion-modal-view>

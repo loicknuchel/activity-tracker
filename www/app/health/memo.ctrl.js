@@ -3,7 +3,7 @@
   angular.module('app')
     .controller('MemoCtrl', MemoCtrl);
 
-  function MemoCtrl($state, $scope, $stateParams, MemoUi, UiUtils, Storage){
+  function MemoCtrl($state, $scope, $stateParams, MemoUi, GalleryModal, UiUtils, Storage){
     var data = {}, fn = {};
     $scope.data = data;
     $scope.fn = fn;
@@ -14,6 +14,9 @@
       });
     });
 
+    fn.showGallery = function(index){
+      GalleryModal.open(data.memo.pictures, index);
+    };
     fn.editMemo = function(){
       MemoUi.editMemo(data.memo).then(function(memo){
         Storage.setMemo(memo).then(function(){

@@ -4,8 +4,23 @@
     <button class="button button-icon ion-android-delete" ng-click="fn.removeMemo()"></button>
   </ion-nav-buttons>
   <ion-content class="padding">
+    <div class="picture-gallery" ng-if="data.memo.pictures.length > 0">
+      <ion-scroll direction="x" class="wide-as-needed">
+        <div class="picture" ng-repeat="picture in data.memo.pictures" ng-click="fn.showGallery($index)">
+          <img ng-src="{{picture.path | fullPath}}" style="height: 100px">
+        </div>
+      </ion-scroll>
+    </div>
     <h1>{{data.memo.title}}</h1>
-    <p class="multi" ng-bind-html="data.memo.text | multi"></p>
+    <p>{{data.memo.text | multi}}</p>
+    <div>
+      <i ng-class="{'ion-ios-person': memo.custom.meal.alone, 'ion-ios-people': !memo.custom.meal.alone}"></i> Seul: {{memo.custom.meal.alone ? 'Oui' : 'Non'}}<br>
+      <i ng-class="{'ion-ios-monitor': memo.custom.meal.screen, 'ion-ios-monitor-outline': !memo.custom.meal.screen}"></i> Ecran: {{memo.custom.meal.screen ? 'Oui' : 'Non'}}<br>
+      <span ng-if="data.memo.custom.meal.hungerBefore"><i class="ion-pizza"></i> Faim avant: {{data.memo.custom.meal.hungerBefore}}/10<br></span>
+      <span ng-if="data.memo.custom.meal.satietyAfter"><i class="ion-android-hand"></i> Satiété: {{data.memo.custom.meal.satietyAfter}}/10<br></span>
+      <span ng-if="data.memo.custom.meal.fulfilmentAfter"><i class="ion-heart"></i> Satisfaction: {{data.memo.custom.meal.fulfilmentAfter}}/10<br></span>
+    </div>
+    <br><br><br>
     <pre>{{data.memo | json}}</pre>
   </ion-content>
 </ion-view>
