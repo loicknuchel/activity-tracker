@@ -42,27 +42,27 @@
       </div>
       <div class="item item-divider">Faim ({{data.memo.custom.meal.hungerBefore}}) :</div>
       <div class="item range range-positive">
-        <i class="icon ion-ios-sunny-outline"></i>
+        <i class="icon ion-coffee"></i>
         <input type="range" name="hunger" min="1" max="10" ng-model="data.memo.custom.meal.hungerBefore">
-        <i class="icon ion-ios-sunny"></i>
+        <i class="icon ion-pizza"></i>
       </div>
       <div class="item item-divider">Satiété ({{data.memo.custom.meal.satietyAfter}}) :</div>
       <div class="item range range-positive">
-        <i class="icon ion-ios-sunny-outline"></i>
+        <i class="icon ion-battery-empty"></i>
         <input type="range" name="satiety" min="10" max="20" ng-model="data.memo.custom.meal.satietyAfter">
-        <i class="icon ion-ios-sunny"></i>
+        <i class="icon ion-battery-full"></i>
       </div>
       <div class="item item-divider">Satisfaction ({{data.memo.custom.meal.fulfilmentAfter}}) :</div>
       <div class="item range range-positive">
-        <i class="icon ion-ios-sunny-outline"></i>
+        <i class="icon ion-ios-heart-outline"></i>
         <input type="range" name="fulfilment" min="1" max="10" ng-model="data.memo.custom.meal.fulfilmentAfter">
-        <i class="icon ion-ios-sunny"></i>
+        <i class="icon ion-ios-heart"></i>
       </div>
     </div>
   </ion-content>
-  <div class="bar bar-footer">
-    <div class="button-bar bar-stable">
+  <ion-footer-bar class="bar-stable">
+    <div class="button-bar">
       <button class="button button-positive" ng-click="fn.save()">Valider</button>
     </div>
-  </div>
+  </ion-footer-bar>
 </ion-modal-view>

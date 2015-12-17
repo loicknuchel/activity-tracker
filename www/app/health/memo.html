@@ -12,7 +12,7 @@
       </ion-scroll>
     </div>
     <h1>{{data.memo.title}}</h1>
-    <p>{{data.memo.text | multi}}</p>
+    <p ng-bind-html="data.memo.text | multi"></p>
     <div>
       <i ng-class="{'ion-ios-person': memo.custom.meal.alone, 'ion-ios-people': !memo.custom.meal.alone}"></i> Seul: {{memo.custom.meal.alone ? 'Oui' : 'Non'}}<br>
       <i ng-class="{'ion-ios-monitor': memo.custom.meal.screen, 'ion-ios-monitor-outline': !memo.custom.meal.screen}"></i> Ecran: {{memo.custom.meal.screen ? 'Oui' : 'Non'}}<br>
